@@ -25,7 +25,11 @@ export class AdminController {
     deleteAdmin(@Param('id') id: number): String {
         return this.adminService.deleteAdmin(id);
     }
-
+    
+    @Delete('deleteAll')
+    declareAllAdmins(@Param('id')id :number): String {
+        return "checking delete all admins";
+    }
 
     @Put('edit/:id')
     editAdmin(@Param('id') id: number, @Body() updatedData: object): String {
