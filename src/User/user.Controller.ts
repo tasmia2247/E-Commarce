@@ -3,36 +3,38 @@ import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+    constructor(private readonly userService: UserService) { }
+    /*
+      @Get()
+      getAllUsers(): string {
+        return this.userService.getAllUsers();
+      }
+    */
+    @Get(':id')
+    getUser(@Param('id') id: string): string {
+        return this.userService.getUser(id);
+    }
+    /*
+      @Get()
+      getUsers(@Query('name') name: string): string {
+        return this.userService.getUsersByName(name);
+      }
+    */
 
-  @Get()
-  getAllUsers(): string {
-    return this.userService.getAllUsers();
-  }
+    @Post()
+    createUser(@Body() data: any): string {
+        return this.userService.createUser(data);
+    }
 
-  @Get(':id')
-  getUser(@Param('id') id: string): string {
-    return this.userService.getUser(id);
-  }
-/*
-  @Get()
-  getUsers(@Query('name') name: string): string {
-    return this.userService.getUsersByName(name);
-  }
-*/
+    @Put()
+    updateUser(@Body() data: any): string {
+    return this.userService.updateUser(data);
+    }
 
-  @Post()
-  createUser(@Body() data: any): string {
-    return this.userService.createUser(data);
-  }
 
-  @Put(':id')
-  updateUser(@Param('id') id: string, @Body() data: any): string {
-    return this.userService.updateUser(id, data);
-  }
+    @Delete(':id')
+    deleteUser(@Param('id') id: string): string {
+        return this.userService.deleteUser(id);
+    }
 
-  @Delete(':id')
-  deleteUser(@Param('id') id: string): string {
-    return this.userService.deleteUser(id);
-  }
 }
