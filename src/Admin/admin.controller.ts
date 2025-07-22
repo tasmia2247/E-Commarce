@@ -1,21 +1,34 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { AdminService } from "./admin.service";
 
 @Controller("admin")
-export class AdminController{
-    constructor(private readonly adminService:AdminService)
-    {}
+export class AdminController {
+    constructor(private readonly adminService: AdminService) {}
 
     @Get('all')
-    getAdmin(){
+    getAdmin() {
         return this.adminService.getAdmin();
     }
-    getAdminbyNameandID(@Query('name') name:string ,@Query('id') id:number): object {
-return this.adminService.getAdminByNameandID(name,id);
+
+    @Get('search')
+    getAdminbyNameandID(@Query('name') name: string, @Query('id') id: number): object {
+        return this.adminService.getAdminByNameandID(name, id);
     }
 
     @Post("addadmin")
-   addAdmin(@Body() admindata: object)  : object{
-    return this.adminService.addAdmin(admindata);
-   }
+    addAdmin(@Body() admindata: object): object {
+        return this.adminService.addAdmin(admindata);
+    }
+
+  
+    @Delete('delete/:id')
+    deleteAdmin(@Param('id') id: number): String {
+        return this.adminService.deleteAdmin(id);
+    }
+
+
+    @Put('edit/:id')
+    editAdmin(@Param('id') id: number, @Body() updatedData: object): String {
+        return this.adminService.editAdmin(id, updatedData);
+    }
 }
