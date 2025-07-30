@@ -1,24 +1,24 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
+import { SellerDTO } from './seller.dto';
+
 
 @Injectable()
 export class SellerService {
-    
-    getSeller(): string {
-        return "All seller";
-    }
 
- 
-    addSeller(seller: object): object {
-        return seller;
-    }
+  addSeller(sellerData: SellerDTO): SellerDTO {
+    return sellerData; 
+  }
+ getAllSellers(): SellerDTO {
+    return ;
+  }
 
-    deleteSeller(id: number): string {
-        
-        return "Seller with ID ${id} has been deleted";
-    }
+  updateSeller(sellerData: SellerDTO): SellerDTO {
+    return sellerData; 
+  }
 
-    editSeller(id: number, updatedData: object): string {
-       
-        return "Seller with ID ${id} has been edited";
-    }
+  deleteSeller(): { message: string } {
+    return { message: 'deleted seller)' };
+  }
 }
+  
+
